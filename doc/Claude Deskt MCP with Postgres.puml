@@ -3,8 +3,8 @@
 'autonumber
 
 actor User as Usr
-participant "Claude Desktop" as CD
-participant "Anthropic Remote Server \n( LLM - Claude 1 / Claude 2)" as AnthropicServer
+participant "Claude Desktop \n (or GitHubCopilot), \n acting as client interface" as CD
+participant "Anthropic Remote Server \n( <b>LLM</b> - Claude 1 / Claude 2)" as AnthropicServer
 participant "Postgres Database \n or any other external tool" as DB
 
 Usr --> CD: a) Creates <b>MCP configuration</b> \n in claude_desktop_config.json
@@ -16,7 +16,7 @@ end note
 Usr -> CD: 1. Submit text query
 CD -> AnthropicServer: 2. Send text query
 AnthropicServer -> AnthropicServer: 3. Transform text query \n into SQL
-AnthropicServer -> DB: 4. Execute SQL query
+AnthropicServer -> DB: 4. Connect to DB \n and execute SQL query
 DB -> AnthropicServer: 5. Return results
 AnthropicServer -> CD: 6. Return obtained results
 CD -> Usr: 7. Display results
